@@ -1,0 +1,18 @@
+<header class="w3-container w3-blue w3-margin-bottom ">
+  <h1>Welcome</h1>
+</header>
+<form id="userLoginForm" class="w3-container">
+
+	<label>Username</label>
+	<input class="w3-input" name="username" type="text"  required pattern='\w+'>
+	<span class="formErrorMsg deactivatedMsg">sample err msg</span>
+	<label>Password</label>
+	<input class="w3-input" name="password" type="password" required  pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'>
+	<span class="formErrorMsg deactivatedMsg">sample err msg</span>
+
+</form>
+<footer class="w3-container w3-margin-top  w3-margin-bottom ">
+   <a class="w3-btn w3-blue-grey w3-right  "  id="loginBtn" >Login</a>
+   <a class="w3-btn w3-green w3-left commandButton " data-commandname="register">Register </a>
+   <a class="w3-btn w3-green w3-yellow w3-margin-left commandButton " data-commandname="recover">Forgot password</a>
+</footer>

@@ -1,0 +1,17 @@
+<header class="w3-container w3-blue w3-margin-bottom ">
+  <h1>Send email for recovery</h1>
+</header>
+<form id="userRecoveryForm" name="UserRecovery" class="w3-container" enctype='application/json'>
+
+	
+	<label>Email</label>
+	<input class="w3-input" name="email" type="text" required pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'>
+	<span class="formErrorMsg deactivatedMsg">sample err msg</span>
+	
+
+</form>
+<footer class="w3-container w3-margin-top  w3-margin-bottom ">
+   <a class="w3-btn w3-yellow  w3-right " id="recoverBtn">send</a>
+   <a class="w3-btn  w3-blue-grey  w3-left  commandButton " data-commandname="login"> Login </a>
+   <a class="w3-btn  w3-green w3-margin-left commandButton" data-commandname="register">register</a>
+</footer>

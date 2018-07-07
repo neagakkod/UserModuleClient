@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+	<head> 
+		<link rel="stylesheet" href="css/w3.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+	<body>
+
+		<div class="w3-row onlyRow">
+			<div class="w3-col m3 s1 w3-container"></div>
+			<div id="mainStage" class="w3-card w3-half w3-cell-middle w3-margin-top ">
+				<header class="w3-container w3-blue w3-margin-bottom ">
+				  <h1>Welcome</h1>
+				</header>
+				<form  id="userLoginForm" class="w3-container">
+
+					<label>Username</label>
+					<input class="w3-input" name="username" type="text"  required pattern='\w+'>
+					<span class="formErrorMsg deactivatedMsg">sample err msg</span>
+					<label>Password</label>
+					<input class="w3-input" name="password" type="password" required  pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'>
+					<span class="formErrorMsg deactivatedMsg">sample err msg</span>
+
+				</form>
+				<footer class="w3-container w3-margin-top  w3-margin-bottom ">
+				   <a class="w3-btn w3-blue-grey w3-right  " id="loginBtn" >Login</a>
+				   <a class="w3-btn w3-green w3-left commandButton " data-commandname="register">Register </a>
+				   <a class="w3-btn w3-green w3-yellow w3-margin-left commandButton " data-commandname="recover">Forgot password</a>
+				</footer>
+			</div>
+			<div class="w3-quarter"></div>
+		</div>
+		<script  src="js/lib/jquery-3.3.1.min.js" ></script>
+		
+		<script  src="js/util/MessageBoard.js" ></script>
+		<script  src="js/util/UserForm.js" ></script>
+		
+		<script  src="js/Controllers/RegisterController.js" ></script>
+		<script  src="js/Controllers/RecoverController.js" ></script>
+		<script  src="js/Controllers/LoginController.js" ></script>
+		
+		<script  src="js/Commands/Command.js" ></script>
+		<script  src="js/Commands/CommandManager.js"></script>
+		<script  src="js/DoorApp.js"></script>
+	</body>
+</html>

@@ -1,0 +1,21 @@
+#loginForm
+{
+	
+}
+
+.onlyRow
+{
+	margin-top:15%
+}
+.activedMsg{
+	display:block;
+}
+.deactivatedMsg
+{
+	display:none;
+}
+.formErrorMsg
+{
+	color:red
+
+}
