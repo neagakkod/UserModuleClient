@@ -32,6 +32,17 @@ function UserForm(formId)
 		errorHolderElement.className=errorHolderElement.className.replace(displayedErrorMsgClassName,hiddenErrorMsgClassName);
 
 	}
+	self.Empty = function()
+	{
+		var userForm = document.getElementById(formId);
+		var formElements = userForm.elements;
+		
+		for(var i =0 ;i<formElements.length;i++)
+		{
+			var el = formElements[i];
+			el.value = "";
+		}
+	}
 	
 	self.fillOutForm = function(user)
 	{
@@ -41,12 +52,12 @@ function UserForm(formId)
 		for(var i =0 ;i<formElements.length;i++)
 		{
 			var el = formElements[i];
-			formElements[i].value = user[name];
+			formElements[i].value = user[el.name];
 		}
 	}
 	self.formIsValid = function(fieldElement)
 	{	
-		var newUser = self.getUser();
+		//var newUser = self.getUser();
 		var userForm = document.getElementById(formId);
 		var formElements = userForm.elements;
 		var grade =100;
