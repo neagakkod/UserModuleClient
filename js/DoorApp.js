@@ -1,12 +1,19 @@
 var app = {};
 app.configs = {
-	commandButtonClassName:"commandButton"
-  , loginPageURL: "login.html"
-  , templateFolderName:"templates"
-  , mainStageId:"mainStage"
+	commands:{
+		  commandButtonClassName:"commandButton"
+		, templateFolderName:"templates"
+		, mainStageId:"mainStage"
+  }	
+  , security : {
+	  loginPageURL: "login.html",
+	  outsideTemplates:["register.html","recover.html"],
+	  currentInfoKeyName:"currentInfo"
+  }
 };
-var cmdManager = new CommandManager(app.configs);
-
+app.cmdManager = new CommandManager(app.configs.commands);
+CurrentSecurity.init(app.configs.security);
+var cmdManager= app.cmdManager;
 //seting loginh command
 cmdManager.commands.login  = new Command();
 cmdManager.commands.login.templateName = "login.html";

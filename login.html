@@ -14,28 +14,39 @@
 				<header class="w3-container w3-blue w3-margin-bottom ">
 				  <h1>Welcome</h1>
 				</header>
-				<form  id="userLoginForm" class="w3-container">
-
+				<form  id="userLoginForm"  class="w3-container">
+				
+					<span  class="formErrorMsg deactivatedMsg w3-padding">hhi</span>
+					<br/>
 					<label>Username</label>
 					<input class="w3-input" name="username" type="text"  required pattern='\w+'>
 					<span class="formErrorMsg deactivatedMsg">sample err msg</span>
 					<label>Password</label>
 					<input class="w3-input" name="password" type="password" required  pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'>
 					<span class="formErrorMsg deactivatedMsg">sample err msg</span>
-
+					<input type="hidden" name="content">
+					<span class="formErrorMsg deactivatedMsg"></span>
 				</form>
 				<footer class="w3-container w3-margin-top  w3-margin-bottom ">
 				   <a class="w3-btn w3-blue-grey w3-right  " id="loginBtn" >Login</a>
 				   <a class="w3-btn w3-green w3-left commandButton " data-commandname="register">Register </a>
 				   <a class="w3-btn w3-green w3-yellow w3-margin-left commandButton " data-commandname="recover">Forgot password</a>
 				</footer>
+				
 			</div>
 			<div class="w3-quarter"></div>
 		</div>
 		<script  src="js/lib/jquery-3.3.1.min.js" ></script>
+		<script  src="js/lib/KuaminikaLib.js" ></script>
 		
+		
+		<script  src="js/util/Security.js" ></script>	
+		<script  src="js/util/ResponseHandler.js" ></script>	
 		<script  src="js/util/MessageBoard.js" ></script>
 		<script  src="js/util/UserForm.js" ></script>
+		
+		<script  src="js/Service/AccountService.js" ></script>
+		<script  src="js/Service/UserService.js" ></script> 
 		
 		<script  src="js/Controllers/RegisterController.js" ></script>
 		<script  src="js/Controllers/RecoverController.js" ></script>

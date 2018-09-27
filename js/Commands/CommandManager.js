@@ -4,24 +4,31 @@ function CommandManager(appConfigs)
 	var nonCommandButtons = $('.'+appConfigs.nonCommandButtonClassName); */
 	var commandMenuButtons, nonCommandButtons ;
 	var self = this;
-	self.wallFunction = function(){
+	
+	function catchPromiseReject(msg)
+	{
+		console.log(msg);
+	}
+	self.wallFunction = function(templateName){
 		console.log("default wall function");
-		var doorIsOpen = true;
+		var doorIsOpen = app.currentUser||CurrentSecurity.templateIsNotInWall(templateName);
 		return Promise.resolve(doorIsOpen);
 	}
-	self.wallIsOn = false;
+	self.wallIsOn = true; // dev only
 	self.commands = {};
 	function processWall(templateName)
 	{
 		if(!self.wallIsOn )
 			return Promise.resolve(templateName);
 		
-		return self.wallFunction()
+		return self.wallFunction(templateName)
 			  .then(function(doorIsOpen){
 				  
 				if(!doorIsOpen)
-					return Promise.reject();
-				
+				{
+					CurrentSecurity.kickOut();
+					//return Promise.reject();
+				}
 				return Promise.resolve(templateName);
 			  });
 	}
@@ -36,8 +43,13 @@ function CommandManager(appConfigs)
 			});
 		
 	}
-	
-	
+	function addCommand (commandName, commandTemplate,Controller)
+	{
+		cmdManager.commands[commandName]  = new Command();
+		cmdManager.commands[commandName].templateName = commandTemplate;
+		cmdManager.commands[commandName].Controller = new Controller();
+	}
+	self.addCommand = addCommand;
 	self.clickFromRoute  = function(command)
 	{
 		return function ()
@@ -45,7 +57,8 @@ function CommandManager(appConfigs)
 			processWall(command.templateName)
 		 	.then(loadTemplate)
 			.then(command.Controller.launch)
-			.then(itniButtons);
+			.then(itniButtons)
+			.catch(catchPromiseReject);
 		}
 	}
 	
@@ -76,6 +89,7 @@ function CommandManager(appConfigs)
 		 .then(loadTemplate)
 		 .then(command.Controller.launch)
 		 .then(itniButtons)
+		.catch(catchPromiseReject);
 	 
 	}
 

@@ -28,7 +28,7 @@ function EditUserController()
 			var service = new UserService();
 			
 			updatedUser.id = _public.user_id;
-			service.updateUser({updatedUser:updatedUser}).then(handler.success,handler.error);
+			service.updateUser({updatedUser:updatedUser,token:userAccount.token}).then(handler.success,handler.error);
 		}
 	}
 	_public.launch= function(){

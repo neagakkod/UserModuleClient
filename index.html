@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>User</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -15,17 +15,17 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 	<!-- Top container -->
 	<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
 	  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
-	  <span class="w3-bar-item w3-right">Logo</span>
+	  <span class="w3-bar-item w3-right"><a onclick="app.signOut()"> sign-out<i class="fa fa-sign-out"></i></a></span>
 	</div>
 
 	<!-- Sidebar/menu -->
 	<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
 	  <div class="w3-container w3-row">
 		<div class="w3-col s4">
-		  <img src="/w3images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
+		  <i class="fa fa-user-large"></i>
 		</div>
 		<div class="w3-col s8 w3-bar">
-		  <span>Welcome, <strong>Mike</strong></span><br>
+		  <span>Welcome, <strong id="welcomeNameSlot">SSS</strong></span><br>
 		  
 		</div>
 	  </div>
@@ -52,8 +52,40 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
 	  <!-- End page content -->
 	</div>
-
+	<script  src="js/util/Security.js" ></script>	
 	<script>
+	var _undefined;
+	var userAccount = localStorage.currentInfo ? JSON.parse(localStorage.currentInfo): _undefined;
+		var nameSlot = document.getElementById("welcomeNameSlot");
+		
+		var app = {};
+	app.configs = {
+		commandButtonClassName:"commandButton"
+	  , nonCommandButtonClassName:"nonCommandButton"
+	  , loginPageURL: "login.html"
+	  , templateFolderName:"templates"
+	  , mainStageId:"theStage"
+	  , activeMenuClass:"w3-blue"
+	  , currentInfoKeyName:"currentInfo"
+	  , security : {
+		  loginPageURL: "login.html",
+		  outsideTemplates:["register.html","recover.html"],
+		  currentInfoKeyName:"currentInfo"
+	  }
+	};
+
+	
+	CurrentSecurity.init(app.configs.security);
+	app.signOut = function()
+	{
+		localStorage.currentInfo = _undefined;
+		CurrentSecurity.kickOut();
+	}
+
+	if(!userAccount) CurrentSecurity.kickOut();
+ 
+	nameSlot.innerHTML = userAccount.user.firstName;
+	
 	// Get the Sidebar
 	var mySidebar = document.getElementById("mySidebar");
 
@@ -86,17 +118,20 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 		<!-- [DO NOT DEPLOY] --> <script src="js/lib/editablegrid/editablegrid_utils.js" ></script>
 		<!-- [DO NOT DEPLOY] --> <script src="js/lib/editablegrid/editablegrid_charts.js" ></script>
 
+
 	<script  src="js/util/MessageBoard.js" ></script>
 	<script  src="js/util/ResponseHandler.js" ></script>	
 	<script  src="js/util/TempData.js" ></script>	
 	<script  src="js/util/UserGrid.js" ></script> 
 	<script  src="js/util/UserForm.js" ></script>	
+	<script  src="js/util/SecureRequest.js" ></script>	
 	<script  src="js/util/KuaminikaRouter.js" ></script>	
 
 	
 	<script  src="js/Service/UserFetcher.js" ></script> 
 	<script  src="js/Service/UserService.js" ></script> 
 	
+	<script  src="js/Controllers/ChangePasswordController.js" ></script>
 	<script  src="js/Controllers/EditUserController.js" ></script>
 	<script  src="js/Controllers/UserGridController.js" ></script>
 
